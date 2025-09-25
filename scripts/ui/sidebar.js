@@ -27,3 +27,14 @@ export function setupSidebarToggle() {
       toggleBtn.classList.remove("show-mode");
     }
   });
+
+   mobileMenuBtn?.addEventListener("click", () => {
+    sidebar?.classList.add("mobile-visible");
+    overlay.classList.add("active");
+  });
+
+  overlay.addEventListener("click", () => {
+    sidebar?.classList.remove("mobile-visible");
+    overlay.classList.remove("active");
+  });
+}
