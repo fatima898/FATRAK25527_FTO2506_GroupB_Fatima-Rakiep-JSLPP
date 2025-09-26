@@ -1,7 +1,3 @@
-/** Dark mode toggling 
- * - stores theme in localStorage
- * - get theme switch element from DOM 
- */
 let darkmode = localStorage.getItem('darkmode')
 const themeSwitch = document.getElementById('theme-switch')
 
@@ -29,20 +25,20 @@ export function initThemeToggle() {
     localStorage.setItem("theme", toggle.checked ? "dark" : "light");
   })
 
-  // load theme on init 
+  // Load saved theme
   const savedTheme = localStorage.getItem("theme");
   if (savedTheme === "dark") {
     document.body.classList.add("dark-theme");
     toggle.checked = true;
   }
 }
-  // persist current theme outside the function
+  // Save theme choice
   localStorage.setItem(
     'theme',
     document.body.classList.contains('dark-theme') ? 'dark' : 'light'
   );
 
-const logo = document.querySelector(".side-logo"); // the logo element 
+const logo = document.querySelector("side-logo"); // Your logo image element
 
 const updateLogoForTheme = () => {
     if (document.body.classList.contains("darkmode")) {
@@ -50,8 +46,6 @@ const updateLogoForTheme = () => {
     }
 };
 
-// Run on load and on theme switch 
+// Run on load + toggle
 updateLogoForTheme();
 themeSwitch.addEventListener("click", updateLogoForTheme);
-
-
