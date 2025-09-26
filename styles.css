@@ -2,7 +2,7 @@
    Global & Root Variables
 ======================== */
 * {
-  box-sizing: border-box; /* Ensures padding and border are included in total element size */
+  box-sizing: border-box; 
 }
 
 :root {
@@ -11,9 +11,87 @@
   --primary-font-color: #000000;
   --secondary-font-color: #828fa3;
   --primary-btn-color: #635fc7;
-  --primary-box-shadow: 0px 4px 6px rgba(54, 78, 126, 0.1015); /* Subtle shadow for card depth */
-  --sidebar-width: 300px; /* Sidebar fixed width */
+  --primary-box-shadow: 0px 4px 6px rgba(54, 78, 126, 0.1015); 
+  --sidebar-width: 300px; 
 }
+.darkmode {
+  --primary-color: #3e3f4e;
+  --secondary-color: #000000;
+  --primary-font-color: #ffffff;
+  --secondary-font-color: #828fa3; 
+  --primary-btn-color: #635fc7;
+  --primary-box-shadow: 0px 4px 6px rgba(54, 78, 126, 0.1015); 
+  --sidebar-width: 300px; 
+}
+
+/* Hide default checkbox */
+.theme-switch {
+  display: none;
+}
+
+.theme-switch-label {
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+  background-color: #ebebeb;
+  border-radius: 30px;
+  position: absolute;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  bottom: 160px;
+  left: 75px;
+
+
+}
+
+/* Slider knob */
+.slider {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(180deg, #ffcc89, #d8860b);
+  border-radius: 50%;
+  box-shadow: 0px 3px 6px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sun-icon, .moon-icon {
+  position: absolute;
+  transition: opacity 0.3s ease;
+}
+
+.moon-icon {
+  opacity: 0;
+}
+
+.theme-switch:checked + .theme-switch-label .slider {
+  transform: translateX(30px);
+  background: linear-gradient(180deg, #555, #111);
+}
+
+.theme-switch:checked + .theme-switch-label .moon-icon {
+  opacity: 1;
+}
+
+.theme-switch:checked + .theme-switch-label .sun-icon {
+  opacity: 0;
+}
+
+/* Dark Mode */
+body.darkmode {
+  background-color: #121212;
+  color: #f5f5f5;
+}
+
+body.darkmode .theme-switch-label {
+  background-color: #444;
+}
+
 
 /* ================
    Base Elements
@@ -36,19 +114,96 @@ body {
   display: flex;
   flex-direction: column;
   background-color: var(--primary-color);
-  border-right: 1px solid #e4ebfa; /* Light divider */
+  border-right: 1px solid #e4ebfa; 
   width: var(--sidebar-width);
   height: 100vh;
 }
 
+/* Utility */
+.hidden { display: none !important; }
+
+/* Shared pill style (matches Figma) */
+.sidebar-toggle {
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #f4f7fd;
+  color: #726aff;
+  border: none;
+  border-radius: 0 100px 100px 0; 
+  height: 48px;
+  width: 276px;
+  padding: 28px 12px 28px 50px;
+  font-size: 0.9375rem;
+  font-weight: bold;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  bottom: -270px;
+}
+
+/* mirror the pill for the button to match design */
+.sidebar-toggle.show {
+  border-radius: 100px 0 0 100px; 
+  padding: 28px 50px 28px 12px;   
+}
+
+/* Sidebar hidden state */
+.side-bar.hidden { 
+  display: none; 
+}
+
+/* Dark Mode Styling */
+.darkmode #theme-switch-toggle {
+    color: #726aff;
+}
+
+/* Floating Show Sidebar Button */
+.show-sidebar-btn {
+    position: fixed;
+    bottom: 20px;
+    left: 0;
+    background: var(--primary-color);
+    padding: 10px;
+    border-radius: 0 6px 6px 0;
+    cursor: pointer;
+    display: none;
+    color: var(--text-color);
+    padding: 10px 15px;
+    border-radius: 6px;
+    align-items: center;
+    gap: 10px;
+}
+
+.sidebar-toggle-hidden {
+  display: none !important;
+}
+
+
+/* Dark Mode Floating Button */
+body.dark-mode .show-sidebar-btn {
+    background: #444;
+}
+
 #side-logo-div {
-  margin: 33px 113px 54px 34px; /* Spacing around logo */
+  margin: 33px 113px 54px 34px; 
   display: flex;
   justify-content: flex-start;
 }
 
 #logo {
-  width: 100%; /* Make logo responsive within container */
+  width: 100%; 
+}
+
+#side-logo-div-darkmode {
+  margin: 33px 113px 54px 34px; 
+  display: none;
+  justify-content: flex-start;
+}
+
+#logo-darkmode {
+  width: 100%; 
 }
 
 .boards-nav-links-div {
@@ -58,39 +213,39 @@ body {
 }
 
 #headline-sidepanel {
-  padding: 0 12px 0 50px; /* Aligns section content from left and right */
+  padding: 0 12px 0 50px; 
 }
 
 h4 {
   color: var(--secondary-font-color);
   font-size: 0.75rem;
-  letter-spacing: 0.125rem; /* Makes heading more spaced */
+  letter-spacing: 0.125rem; 
 }
 
 .board-btn {
   font-family: inherit;
   display: flex;
   align-items: center;
-  gap: 10px; /* Space between icon and text */
+  gap: 10px; 
   background-color: var(--primary-btn-color);
   color: #fff;
   border: none;
-  border-radius: 0 100px 100px 0; /* Pill shape only on right side */
+  border-radius: 0 100px 100px 0; 
   height: 48px;
   width: 276px;
   padding: 28px 12px 28px 50px;
   font-size: 0.9375rem;
   font-weight: bold;
   cursor: pointer;
-  overflow: hidden; /* Prevents overflowed text/icons from showing */
+  overflow: hidden; 
 }
 
 /* ===============
    Main Layout
 ================ */
 #layout {
-  flex: 1; /* Fills remaining space beside sidebar */
-  overflow-x: hidden; /* Prevent horizontal scroll */
+  flex: 1; 
+  overflow-x: hidden; 
   width: 100%;
 }
 
@@ -117,8 +272,9 @@ header {
 }
 
 .logo-mobile {
-  display: none; /* Hidden on desktop; shown on smaller screens */
+  display: none; /* hidden on desktop; visible on smaller screens */
 }
+
 
 /* ===============
    Board Columns
@@ -135,8 +291,8 @@ header {
   grid-template-columns: repeat(
     3,
     minmax(0, 304px)
-  ); /* 3 columns with min size */
-  gap: 8px; /* Space between columns */
+  ); 
+  gap: 8px; 
 }
 
 .column-div {
@@ -150,7 +306,7 @@ header {
 .column-head-div {
   display: flex;
   align-items: center;
-  gap: 10px; /* Space between dot and column title */
+  gap: 10px; /
 }
 
 .columnHeader {
@@ -164,7 +320,7 @@ header {
 .dot {
   height: 15px;
   width: 15px;
-  border-radius: 50%; /* Make it circular */
+  border-radius: 50%;
   display: inline-block;
 }
 
@@ -204,6 +360,27 @@ header {
   font-weight: bold;
 }
 
+.task-id {
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: var(--color-accent, #666);
+  margin-right: 4px;
+}
+
+.task-actions {
+  margin-top: 8px;
+  display: flex;
+  gap: 6px;
+}
+.task-actions button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+.task-actions button:hover {
+  opacity: 0.7;
+}
 /* ===============
    Headings
 ================ */
@@ -215,17 +392,15 @@ h2 {
 /* ===============
    Modal Styles
 ================ */
-/* Remove default dialog styles */
+/* remove dialog styles */
 dialog {
   position: fixed;
-
   border: none;
   padding: 0;
   margin: 0;
   background: none;
 }
 
-/* Style the modal box */
 #task-modal::backdrop {
   background: rgba(0, 0, 0, 0.3);
 }
@@ -242,6 +417,46 @@ dialog {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   /*font-family: "Plus Jakarta Sans", sans-serif;*/
 }
+.darkmode #task-modal{
+  background-color: #2b2c37;
+  color: #fff;
+}
+
+.darkmode .modal {
+  background-color: #2b2c37;
+  color: #fff;
+}
+
+.darkmode .modal input,
+.darkmode .modal textarea,
+.darkmode #task-status {
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #555;
+}
+
+.darkmode .modal-header {
+  color: #ffffff
+}
+
+.darkmode #select-status {
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #555;
+}
+
+/* Priority Colors */
+.task-priority {
+  margin-top: 5px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+  color: white;
+  display: inline-block;
+}
+.task-priority.low { background-color: green; }
+.task-priority.medium { background-color: orange; }
+.task-priority.high { background-color: red; }
 
 /* Header */
 .modal-header {
@@ -298,10 +513,10 @@ form select {
 }
 
 form select {
-  appearance: none; /* Remove native arrow */
+  appearance: none; 
   background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="%23828FA3" stroke-width="3" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>')
     no-repeat right 0.75rem center;
-
+/* use my own arrow icon instead of the browser’s and put it neatly on the right side of the dropdown */
   background-size: 1.4rem;
   padding-right: 1rem;
 }
@@ -319,8 +534,6 @@ form select {
   cursor: pointer;
   margin-right: 20px;
 }
-
-/* New Task Modal Window */
 
 .modal-window {
   /* border: 5px solid red; */
@@ -347,7 +560,7 @@ form select {
 
 .submit-btn {
   background-color: var(--primary-btn-color);
-  color: white;
+  color: rgb(255, 255, 255);
   border-radius: 30px;
   border: 0;
   font-size: 16px;
@@ -356,8 +569,8 @@ form select {
   padding-right: 35px;
   font-weight: 600;
   cursor: pointer;
-  flex-grow: 1; /* Allows the button to grow and fill the space */
-  margin: 5px 0; /* Optional: adds a margin between buttons */
+  flex-grow: 1; /* button grow and fill the space */
+  margin: 5px 0; 
 }
 
 textarea {
@@ -369,6 +582,57 @@ textarea {
   resize: vertical;
 }
 
+/* adjust main content when sidebar is hidden */
+.main-content {
+  transition: margin-left 0.3s ease;
+}
+
+.sidebar.hidden + .main-content {
+  margin-left: 0;
+}
+
+/* =======================
+   Theme Toggle
+=======================*/
+/* ===== Dark Mode Toggle ===== */
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.toggle input {
+  width: 40px;
+  height: 20px;
+  appearance: none;
+  background-color: #ccc;
+  border-radius: 20px;
+  position: relative;
+  transition: transform 0.3s;
+}
+
+.toggle input:checked {
+  background-color: var(--color-accent);
+}
+
+.toggle input::before {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: white;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.3s;
+}
+
+.toggle input:checked::before {
+  transform: translateX(20px);
+}
+
+
 /* ========================
    Responsive Styles
 ======================== */
@@ -376,12 +640,12 @@ textarea {
 /******** Tablets ********/
 @media screen and (max-width: 1023px) {
   .side-bar {
-    display: none; /* Hide sidebar on tablets and smaller */
+    display: none; /* hide sidebar on tablets and smaller */
   }
 
   .side-bar.show-sidebar {
     display: flex !important;
-    position: fixed; /* Overlay on top of page */
+    position: fixed; /* overlay on top of page */
     height: auto;
   }
 
@@ -456,7 +720,7 @@ textarea {
     grid-template-columns: minmax(
       0,
       380px
-    ); /* Stack columns in single column */
+    ); /* in single column */
   }
 
   .column-div {
@@ -478,3 +742,11 @@ textarea {
     padding-bottom: 0;
   }
 }
+
+  #board-btn {
+    display: none
+  }
+
+  #header-board-name {
+    display: none;
+  }
