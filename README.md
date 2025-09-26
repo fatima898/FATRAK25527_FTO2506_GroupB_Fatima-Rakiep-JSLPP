@@ -5,8 +5,8 @@
 This project involves **deploying a Kanban app to Netlify**, ensuring the app's functionality and persistence through local storage, and implementing dynamic features such as task editing, deletion, sidebar interaction, and a theme toggle. The goal is to deliver a fully interactive, deployable application that is responsive across devices and maintains data consistency. 
 
 ## 🔗 Links 
-- Live App on Netlify: 
-- Presentation: [Watch Presentation]()
+- Live App on Netlify: https://kanban-app-73e5f2.netlify.app/
+- Presentation: [Watch Presentation](https://www.loom.com/share/3e6f14710e444ffeaaaea7080fd40f66?sid=42feaaa2-af5d-4fa1-aec7-067eb2a4de75)
 
 ## 🗝️ Key Features
 
